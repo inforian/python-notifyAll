@@ -37,8 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # library apps
+    # 3rd party apps
+    'django_extensions',
+
+    # local apps
     'notifyAll',
+    'notifyAll.services',
+    'notifyAll.providers.gmail',
 ]
 
 MIDDLEWARE = [
