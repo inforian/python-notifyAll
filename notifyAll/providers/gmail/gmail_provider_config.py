@@ -28,3 +28,4 @@ EMAIL_HOST_PASSWORD = getattr(settings, 'EMAIL_HOST_PASSWORD', '')  # my gmail p
 EMAIL_HOST_USER = getattr(settings, 'EMAIL_HOST_USER', '')  # my gmail username
 EMAIL_PORT = getattr(settings, 'EMAIL_PORT', 587)
 DEFAULT_FROM_EMAIL = getattr(settings, 'EMAIL_HOST', EMAIL_HOST_USER)
+FAIL_SILENTLY = getattr(settings, 'FAIL_SILENTLY', False)
