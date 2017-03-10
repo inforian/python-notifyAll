@@ -126,13 +126,15 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# Email Backend
+# Notification related settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
+
 
 # import local settings
 try:
     from notifyAll.config.email_provider_settings import *
+    from notifyAll.config.sms_provider_settings import *
     from notifyAll.config.local_settings import *
 except:
     pass
