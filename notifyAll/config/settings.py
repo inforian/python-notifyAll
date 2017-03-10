@@ -132,6 +132,7 @@ EMAIL_USE_TLS = True
 
 # import local settings
 try:
+    from notifyAll.config.email_provider_settings import *
     from notifyAll.config.local_settings import *
 except:
     pass
