@@ -33,6 +33,7 @@ class GmailProvider(base.EmailProvider):
 
         :data: a dict contains all necessary data needed by Provider to send notification.
         """
+        super(GmailProvider, self).__init__()
 
         # validate notification_type w.r.t Provider notify_type
         self._validate_notification_type_with_provider(notification_type)
