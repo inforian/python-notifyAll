@@ -88,3 +88,39 @@ class EmailProvider(object):
         """
         """
         pass
+
+
+class SMSProvider(object):
+    """Base class for All SMS providers
+
+    """
+    id = None
+    name = None
+    notify_type = service_config.SMS
+
+    def __init__(self):
+        """
+
+        """
+
+    def _validate_notification_type_with_provider(self, notification_type):
+        """validate notification_type w.r.t notify_type of Provider, means for which you have called this provider
+        wether this provider allows that functionality ?
+        """
+        if not notification_type == self.notify_type:
+            raise ValueError('Invalid notification type for {0} Provider.'.format(self.name))
+
+    def _prepare_sms_message(self, to, from_, context):
+        """Prepare email message with necessary information.
+        """
+        return {
+            'src': to,
+            'dst': from_,
+            'text': context.get('body', ''),
+            'method': context.get('method', 'GET')
+        }
+
+    def notify(self):
+        """
+        """
+        pass
