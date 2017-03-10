@@ -20,7 +20,9 @@ from __future__ import unicode_literals
 # 3rd party
 
 # Django
+from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
+from django.core.exceptions import ImproperlyConfigured
 
 # local
 from notifyAll.services import service_config
@@ -36,6 +38,17 @@ class EmailProvider(object):
     id = None
     name = None
     notify_type = service_config.EMAIL
+
+    def __init__(self):
+        """
+
+        """
+        # validate necessary settings are configured by user for Email Notifications
+        email_backend = getattr(settings, 'EMAIL_BACKEND', None)
+        email_host = getattr(settings, 'EMAIL_HOST', None)
+
+        if email_backend is None or email_host is None:
+            raise ImproperlyConfigured('to send emails you need to configure email Backend and Host.')
 
     def _validate_notification_type_with_provider(self, notification_type):
         """validate notification_type w.r.t notify_type of Provider, means for which you have called this provider
