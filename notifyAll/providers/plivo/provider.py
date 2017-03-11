@@ -5,7 +5,7 @@
 - notifyAll.providers.plivo.provider
 ~~~~~~~~~~~~~~
 
-- This file contains the functionality of SendGrid Provider
+- This file contains the functionality of Plivo Provider
 """
 
 # future
@@ -37,7 +37,7 @@ class PlivoProvider(base.SMSProvider):
         """
         super(PlivoProvider, self).__init__()
 
-        # validate necessary settings and configurePlivo
+        # validate necessary settings and configure Twilio
         self._validate_configure_plivo()
 
         # validate notification_type w.r.t Provider notify_type
@@ -64,8 +64,18 @@ class PlivoProvider(base.SMSProvider):
 
         self.plivo_clinet = plivo.RestAPI(auth_id, auth_token)
 
+    def _prepare_sms_message(self, from_, to, context):
+        """Prepare plivo message with necessary information.
+        """
+        return {
+            'src': from_,
+            'dst': to,
+            'text': context.get('body', ''),
+            'method': context.get('method', 'GET')
+        }
+
     def notify(self):
-        """notify respective recipient using plivo clinet
+        """notify respective recipient using plivo client
 
         """
         message = self._prepare_sms_message(self.source, self.destination, self.context)

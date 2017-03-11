@@ -63,14 +63,14 @@ class EmailProvider(object):
         """
         return value if type(value) is list else [value]
 
-    def _prepare_email_message(self, to, from_, context):
+    def _prepare_email_message(self, from_, to, context):
         """Prepare email message with necessary information.
         """
         message = {
             'subject': context.get('subject', ''),
             'body': context.get('body', ''),
-            'from_email': to if to else provider_config.DEFAULT_FROM_EMAIL,
-            'to': self._convert_var_type_to_list(from_),
+            'from_email': from_ if from_ else provider_config.DEFAULT_FROM_EMAIL,
+            'to': self._convert_var_type_to_list(to),
             'cc': self._convert_var_type_to_list(context.get('cc')),
             'bcc': self._convert_var_type_to_list(context.get('bcc')),
         }
@@ -110,15 +110,10 @@ class SMSProvider(object):
         if not notification_type == self.notify_type:
             raise ValueError('Invalid notification type for {0} Provider.'.format(self.name))
 
-    def _prepare_sms_message(self, to, from_, context):
-        """Prepare email message with necessary information.
+    def _prepare_sms_message(self, from_, to, context):
+        """Prepare sms message with necessary information.
         """
-        return {
-            'src': to,
-            'dst': from_,
-            'text': context.get('body', ''),
-            'method': context.get('method', 'GET')
-        }
+        pass
 
     def notify(self):
         """

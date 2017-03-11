@@ -31,3 +31,6 @@ DEFAULT_FROM_EMAIL = getattr(settings, 'DEFAULT_FROM_EMAIL', EMAIL_HOST_USER)
 # SMS related settings
 PLIVO_AUTH_ID = getattr(settings, 'PLIVO_AUTH_ID', None)
 PLIVO_AUTH_TOKEN = getattr(settings, 'PLIVO_AUTH_TOKEN', None)
+
+TWILIO_ACCOUNT_SID = getattr(settings, 'TWILIO_ACCOUNT_SID', None)
+TWILIO_AUTH_TOKEN = getattr(settings, 'TWILIO_AUTH_TOKEN', None)
