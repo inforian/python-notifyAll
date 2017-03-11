@@ -1,0 +1,45 @@
+# <type>: <subject (If applied, this commit will...)>
+
+# <body (Explain why this change is being made)>
+
+# <footer (Provide links to any relevant tickets, articles or other resources)>
+
+# ** TYPES **
+# add : a new class/function added
+# update : updating existig fucntion (neither due to any bug or feat but due to update in requirement)
+# feat (new feature)
+# fix (bug fix)
+# docs (changes to documentation)
+# style (formatting, missing semi colons, etc; no code change)
+# refactor (refactoring production code)
+# test (adding missing tests, refactoring tests; no production code change)
+# chore (updating gradle tasks etc; no production code change)
+
+# ** FOOTERS **
+# References #1, #4, and #2.
+# Fix #1. note this marks the item as accepted in Sprintly
+# Closes #1 and #2. note this marks the item as accepted in Sprintly
+
+# ** Funtip **
+# Work hard, play hard!  Consider suffixing your commit messages with a relevant emoji for
+# greater good:
+#
+#   :hammer: `:hammer:` when adding new class/fucntion
+#   :construction_worker: `:construction_worker:` changes to update in requirement
+#   :art: `:art:` when improving the format/structure of the code
+#   :racehorse: `:racehorse:` when improving performance
+#   :non-potable_water: `:non-potable_water:` when plugging memory leaks
+#   :memo: `:memo:` when writing docs
+#   :penguin: `:penguin:` when fixing something in Java file
+#   :checkered_flag: `:checkered_flag:` when fixing something in layouts
+#   :bug: `:bug:` when fixing a bug
+#   :fire: `:fire:` when removing code or files
+#   :green_heart: `:green_heart:` when fixing the CI build
+#   :white_check_mark: `:white_check_mark:` when adding tests
+#   :lock: `:lock:` when dealing with security
+#   :arrow_up: `:arrow_up:` when upgrading dependencies
+#   :arrow_down: `:arrow_down:` when downgrading dependencies
+#   :shirt: `:shirt:` when removing linter warnings
+
+# for sample commit messages:
+# https://github.com/sparkbox/standard/tree/master/style/git#example-commit-messages
