@@ -1,0 +1,87 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>NotifyAll Example</title>
+
+        <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div style="margin: 0 0 40px 0px" class="col-lg-12">
+                    <h1 style="text-align: center;">NotifyAll Example</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6" style="padding-right: 20px; border-right:1px solid #ccc;">
+                    <form class="form-horizontal" name="emailNotificationForm" method="post" action="{% url 'notification' 'email' %}">
+                        {% csrf_token %}
+                        <fieldset>
+                            <legend>Email Notification Form : </legend>
+                            <div class="form-group">
+                                <label for="inputEmail" class="control-label col-xs-2">Email</label>
+                                <div class="col-xs-10">
+                                    <input type="email" class="form-control" id="inputEmail" placeholder="Email Id">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputSubject" class="control-label col-xs-2">Email Subject</label>
+                                <div class="col-xs-10">
+                                    <input type="text" class="form-control" id="inputSubject" placeholder="Email Subject">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputBody" class="control-label col-xs-2">Email Body</label>
+                                <div class="col-xs-10">
+                                    <textarea class="form-control" id="inputBody" rows="5" cols="10"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputProvider" class="control-label col-xs-2">Email Provider</label>
+                                <div class="col-xs-10">
+                                    <select class="form-control" id="inputProvider">
+                                        <option id="">Select Email Provider</option>
+                                        <option id="abc">abc</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputHTML" class="control-label col-xs-2">HTML Message</label>
+                                <div class="col-xs-10">
+                                    <input type="checkbox" class="form-control" id="inputHTML" >
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-offset-2 col-xs-10">
+                                    <button type="submit" class="btn btn-primary">Send Email Notification</button>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+                <div class="col-lg-6">
+                    <form class="form-horizontal" name="smsNotificationForm" method="post" action="{% url 'notification' 'sms' %}">
+                        {% csrf_token %}
+                        <fieldset>
+                            <legend>SMS Notification Form : </legend>
+                            <div class="form-group">
+                                <label for="inputPhone" style="width: 130px" class="control-label col-xs-2">Phone Number</label>
+                                <div class="col-xs-10">
+                                    <input style="margin: -23px 0 0px 120px" type="email" class="form-control" id="inputEmail" placeholder="Phone Number">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-xs-offset-2 col-xs-10">
+                                    <button type="submit" class="btn btn-primary">Send SMS Notification</button>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
