@@ -40,6 +40,8 @@ INSTALLED_APPS = [
 
     # 3rd party apps
     'notifyAll',
+    'django_extensions',
+
     # own apps
     'example.demo',
 ]
