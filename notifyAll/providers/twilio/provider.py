@@ -38,7 +38,7 @@ class TwilioProvider(base.SMSProvider):
         super(TwilioProvider, self).__init__()
 
         # validate necessary settings and configure Twilio
-        self._validate_configure_plivo()
+        self._validate_configure_twilio()
 
         # validate notification_type w.r.t Provider notify_type
         self._validate_notification_type_with_provider(notification_type)
@@ -48,7 +48,7 @@ class TwilioProvider(base.SMSProvider):
         self.notification_type = notification_type
         self.context = context
 
-    def _validate_configure_plivo(self):
+    def _validate_configure_twilio(self):
         """configure twilio client
 
         :return: twilio client instance
