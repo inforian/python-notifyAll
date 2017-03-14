@@ -17,8 +17,24 @@ def home(request):
 
 def notification_handler(request, action):
     """
+
+    POST Example :
+    {
+        "to": "example@gmail.com",
+        "subject": "micro service integration",
+        "provider": "gmail",
+        "body": "<h1>email Body comes here</h1>",
+        "html_message":"true"
+    }
+
+    POST EXAMPLE for SMS:
+    {
+        "to": "+9198********",
+        "from_": "plivo",
+        "provider": "plivo",
+        "body": "micro service message"
+    }
     """
-    template_name = 'notification.html'
     if action == 'email':
         html_message = None
         if request.POST.get('html_message') is True:
@@ -45,7 +61,22 @@ def notification_handler(request, action):
             messages.add_message(request, messages.ERROR, e)
 
     elif action == 'sms':
-        pass
+        data = {
+            'source': request.POST.get('from_'),
+            'destination': request.POST.get('to'),
+            'notification_type': 'sms',
+            'provider': request.POST.get('provider'),
+            'context': {
+                'body': request.POST.get('body')
+            },
+        }
+
+        try:
+            notify(**data)
+            messages.add_message(request, messages.SUCCESS, 'SMS successfully sent.')
+        except Exception as e:
+            messages.add_message(request, messages.ERROR, e)
+
     elif action == 'push':
         pass
 

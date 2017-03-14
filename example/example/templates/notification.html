@@ -82,7 +82,23 @@
                             <div class="form-group">
                                 <label for="inputPhone" style="width: 130px" class="control-label col-xs-2">Phone Number</label>
                                 <div class="col-xs-10">
-                                    <input style="margin: -23px 0 0px 120px" type="email" class="form-control" id="inputEmail" placeholder="Phone Number">
+                                    <input style="margin: -23px 0 0px 120px" type="text" class="form-control" name="to" id="inputPhone" placeholder="Phone Number">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputBody" class="control-label col-xs-2">Email Body</label>
+                                <div class="col-xs-10">
+                                    <textarea class="form-control" id="inputBody" name="body" rows="5" cols="10"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputProvider" class="control-label col-xs-2">Email Provider</label>
+                                <div class="col-xs-10">
+                                    <select name="provider" class="form-control" id="inputProvider">
+                                        <option id="">Select SMS Provider</option>
+                                        <option value="plivo">Plivo</option>
+                                        <option value="twilio">Twilio</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group">
