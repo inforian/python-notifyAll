@@ -2,7 +2,8 @@ license
 =======
 
     django-notifyAll
-    A lib which you can use for all types of notifications like SMS, Mail, Push.
+
+    A library which you can use for all types of notifications like SMS, Mail, Push.
     Copyright (C) 2017 Neeraj Dhiman.
 
     This program is free software: you can redistribute it and/or modify
