@@ -12,6 +12,25 @@ https://docs.djangoproject.com/en/1.10/ref/settings/
 
 import os
 
+# Normally you should not import ANYTHING from Django directly
+# into your settings, but ImproperlyConfigured is an exception.
+from django.core.exceptions import ImproperlyConfigured
+
+
+def get_env_setting(key):
+    """
+    Get the environment setting or return exception,
+    if default is not set
+
+    :param key:
+    """
+    try:
+        return os.environ[key]
+    except KeyError:
+        error_msg = 'Set the {0} env variable'.format(key)
+        raise ImproperlyConfigured(error_msg)
+
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -19,6 +38,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
+SECRET_KEY = get_env_setting('SECRET_KEY'),
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
