@@ -1,6 +1,8 @@
 Welcome to django-notifyAll's documentation !
 =============================================
 
+.. image:: https://travis-ci.org/inforian/django-notifyAll.svg?branch=master
+
 A library which can be used for all types of notifications like SMS, Mail, Push.
 
 You can view this library's documentation on `Read the Docs`_ too.
