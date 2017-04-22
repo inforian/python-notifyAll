@@ -15,7 +15,7 @@ env:
 install:
   - pip install .
   - pip install -r requirements.txt
-  - pip install "$DJANGO_VERSION"
+  - pip install "$DJANGO_VERSION"  "coverage==3.7.1" coveralls "mock>=1.0.1"
 matrix:
   exclude:
     # Django 1.9+ no longer supports python 3.3
@@ -30,6 +30,7 @@ matrix:
 # command to run tests
 script:
   - python manage.py test
+  - coverage run manage.py test notifyall
 after_success:
   - coverage report
   - coveralls
