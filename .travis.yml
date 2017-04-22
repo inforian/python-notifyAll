@@ -30,3 +30,6 @@ matrix:
 # command to run tests
 script:
   - python manage.py test
+after_success:
+  - coverage report
+  - coveralls
