@@ -11,6 +11,8 @@ Welcome to django-notifyAll's documentation !
 
 A library which can be used for all types of notifications like SMS, Mail, Push.
 
+"**Documenation**" : https://django-notifyall.readthedocs.io/en/latest/index.html
+
 You can view this library's documentation on `Read the Docs`_ too.
 
 
@@ -49,6 +51,5 @@ How?
 
 Work in progress, the basic idea is to follow the lead of `django-allauth`_.
 
-.. _Read the Docs: https://django-allauth.readthedocs.io/en/latest/index.html
 .. _django-allauth: https://django-allauth.readthedocs.io/en/latest/index.html
 
