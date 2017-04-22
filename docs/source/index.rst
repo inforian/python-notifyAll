@@ -41,6 +41,29 @@ How?
 
 Work in progress, the basic idea is to follow the lead of `django-allauth`_.
 
+
+Contents
+========
+
+.. toctree::
+    :titlesonly:
+    :maxdepth: 2
+
+    overview
+    installation
+    providers
+    example
+    contribute
+    license
+
+
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
+
 .. _Read the Docs: https://django-allauth.readthedocs.io/en/latest/index.html
 .. _django-allauth: https://django-allauth.readthedocs.io/en/latest/index.html
-
