@@ -16,6 +16,8 @@ Welcome to django-notifyAll's documentation !
 
 A library which can be used for all types of notifications like SMS, Mail, Push.
 
+- Supports Python2.7+, Django 1.9+
+
 **Documenation** : https://django-notifyall.readthedocs.io/en/latest/index.html
 
 
