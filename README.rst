@@ -1,6 +1,10 @@
 Welcome to django-notifyAll's documentation !
 =============================================
 
+.. image:: https://readthedocs.org/projects/django-notifyall/badge/?version=latest
+    :target: http://django-notifyall.readthedocs.io/en/latest/?badge=latest
+    :alt: Documentation Status
+
 .. image:: https://badge.fury.io/py/django-notifyAll.svg
    :target: http://badge.fury.io/py/django-notifyAll
 
