@@ -74,7 +74,6 @@ context
         For email provider only. If you want to send message including **HTML** then you need to send your notification body
         in the above key.
 
-
 **Example Usage** :
 
  .. code-block:: python
@@ -99,17 +98,11 @@ context
             'context': context,
         }
 
-        notification = notifier.Notifier(
-            source=data.get('source'),
-            destination=data.get('destination'),
-            notification_type=data.get('notification_type'),
-            provider=data.get('provider'),
-            context=data.get('context')
-        )
+        notification = notifier.Notifier(**data)
 
         return notification.notify()
 
 For more information about usage visit our `Example`_ project.
 
-.. _Provider: https://django-allauth.readthedocs.io/en/latest/Providers.html
+.. _Provider: https://django-allauth.readthedocs.io/en/latest/providers.html
 .. _Example: https://django-allauth.readthedocs.io/en/latest/example.html
