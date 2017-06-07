@@ -35,8 +35,7 @@ SMS Providers
 
 - When you register at `Plivo` it will give you two keys which you need to configure in your Django Project.
 
-As Django settings :
-~~~~~~~~~~~~~~~~~~~~
+**As Django settings :**
 
 PLIVO_AUTH_ID
 +++++++++++++
@@ -44,8 +43,7 @@ PLIVO_AUTH_ID
 PLIVO_AUTH_TOKEN
 ++++++++++++++++
 
-As Function Arguments:
-~~~~~~~~~~~~~~~~~~~~~~
+**As Function Arguments:**
 
 - `PLIVO_AUTH_ID` as `auth_id`
 - `PLIVO_AUTH_TOKEN` as `auth_token`
@@ -95,8 +93,7 @@ As Function Arguments:
 
 - When you register at `Twilio` it will give you two keys which you need to configure in your Django Project.
 
-As Django settings :
-~~~~~~~~~~~~~~~~~~~~
+**As Django settings :**
 
 TWILIO_ACCOUNT_SID
 ++++++++++++++++++
@@ -104,8 +101,7 @@ TWILIO_ACCOUNT_SID
 TWILIO_AUTH_TOKEN
 +++++++++++++++++
 
-As Function Arguments:
-~~~~~~~~~~~~~~~~~~~~~~
+**As Function Arguments:**
 
 - `TWILIO_ACCOUNT_SID` as `account_sid`
 - `TWILIO_AUTH_TOKEN` as `auth_token`
