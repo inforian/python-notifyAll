@@ -7,6 +7,15 @@ SMS Providers
 
     notification_type = 'sms'
 
+- General Settings you need to configure in Django Project when using any email providers are mentioned below :
+
+- Some settings can be passed as function arguments as well as in `Django settings`. The main AIM is to provide all
+	possible flexibility to user to use Any `Provider` with any configuration.
+
+- If we Add settings in `Django settings` then in entire project those settings will be used But if you want every
+	notification use different provider configuration then that is also possible here.
+
+
 > Plivo
 -------
 
@@ -26,12 +35,45 @@ SMS Providers
 
 - When you register at `Plivo` it will give you two keys which you need to configure in your Django Project.
 
+As Django settings :
+~~~~~~~~~~~~~~~~~~~~
 
 PLIVO_AUTH_ID
 +++++++++++++
 
 PLIVO_AUTH_TOKEN
 ++++++++++++++++
+
+As Function Arguments:
+~~~~~~~~~~~~~~~~~~~~~~
+
+- `PLIVO_AUTH_ID` as `auth_id`
+- `PLIVO_AUTH_TOKEN` as `auth_token`
+
+
+**Example Usage** :
+
+ .. code-block:: python
+
+    from notifyAll.services import notifier
+
+
+    def notify():
+        """
+        """
+        data = {
+            'source': '<source>',
+            'destination': '<destination>',
+            'notification_type': 'sms',
+            'provider': 'plivo',
+            'context': {
+                'body': 'test message'
+            },
+        }
+
+        notification = notifier.Notifier(**data)
+
+        return notification.notify(auth_id='<plivo_auth_id>', auth_token='<plivo_auth_token>')
 
 
 > Twilio
@@ -53,6 +95,8 @@ PLIVO_AUTH_TOKEN
 
 - When you register at `Twilio` it will give you two keys which you need to configure in your Django Project.
 
+As Django settings :
+~~~~~~~~~~~~~~~~~~~~
 
 TWILIO_ACCOUNT_SID
 ++++++++++++++++++
@@ -60,6 +104,14 @@ TWILIO_ACCOUNT_SID
 TWILIO_AUTH_TOKEN
 +++++++++++++++++
 
+As Function Arguments:
+~~~~~~~~~~~~~~~~~~~~~~
+
+- `TWILIO_ACCOUNT_SID` as `account_sid`
+- `TWILIO_AUTH_TOKEN` as `auth_token`
+
+
+- Usage is same as shown in `Plivo` provider example
 
 .. _plivo: https://github.com/plivo/plivo-python
 .. _twilio:  https://github.com/twilio/twilio-python

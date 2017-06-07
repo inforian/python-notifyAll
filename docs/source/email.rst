@@ -7,7 +7,14 @@ Email Providers
 
     notification_type = 'email'
 
-General Settings you need to configure in Django Project when using any email providers are mentioned below :
+- General Settings you need to configure in Django Project when using any email providers are mentioned below :
+
+- Some settings can be passed as function arguments as well as in `Django settings`. The main AIM is to provide all
+    possible flexibility to user to use Any `Provider` with any configuration.
+
+- If we Add settings in `Django settings` then in entire project those settings will be used But if you want every
+    notification use different provider configuration then that is also possible here.
+
 
 > General Settings
 ------------------
@@ -52,9 +59,14 @@ Default email address to use for various outgoing emails.
 
     provider = 'gmail'
 
-- You can use Gmail as your **SMTP** provider an send Emails from Your own Gmail account.
+- You can use Gmail as your **SMTP** provider an send Emails from Your own `Gmail` account.
+
 - For this you need below settings to configure in your Django Project.
+
 - Sample settings for Gmail Provider are as follows:
+
+As Django settings :
+++++++++++++++++++++
 
  .. code-block:: python
 
@@ -65,6 +77,41 @@ Default email address to use for various outgoing emails.
     EMAIL_HOST_PASSWORD = 'mypassword'  # my gmail password
     EMAIL_PORT = 587
     DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+As Function Arguments:
+++++++++++++++++++++++
+
+- `EMAIL_HOST_USER` as `username`.
+- `EMAIL_HOST_PASSWORD` as `password`.
+
+**Example Usage** :
+
+ .. code-block:: python
+
+    from notifyAll.services import notifier
+
+
+    def notify():
+        """
+        """
+        context = {
+            'subject': 'subject'
+            'body': 'body'
+            'html_message': '<h1>html message</h1>'
+        }
+
+        data = {
+            'source': 'admin@example.com',
+            'destination': 'me@example.com',
+            'notification_type': 'email',
+            'provider': 'gmail',
+            'context': context,
+        }
+
+        notification = notifier.Notifier(**data)
+
+        return notification.notify(username='myuser@gmail.com', password='mypassword')
+
 
 > SendGrid
 ----------
@@ -85,6 +132,9 @@ SENDGRID_API_KEY :
 
 - Sample settings for SendGrid Provider are as follows:
 
+As Django settings :
+++++++++++++++++++++
+
  .. code-block:: python
 
     EMAIL_USE_TLS = True
@@ -95,3 +145,9 @@ SENDGRID_API_KEY :
     EMAIL_PORT = 587
     DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
+As Function Arguments:
+++++++++++++++++++++++
+
+- `SENDGRID_API_KEY` as `sendgrid_api_key`.
+
+- Usage is same as shown in `Gmail` provider example

@@ -13,6 +13,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 
 # ------------ SendGrid -----------
-EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-SENDGRID_API_KEY = None
+# EMAIL_HOST = 'smtp.sendgrid.net'
+# EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+# SENDGRID_API_KEY = None
+
