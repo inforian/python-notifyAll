@@ -60,13 +60,10 @@ Default email address to use for various outgoing emails.
     provider = 'gmail'
 
 - You can use Gmail as your **SMTP** provider an send Emails from Your own `Gmail` account.
-
 - For this you need below settings to configure in your Django Project.
-
 - Sample settings for Gmail Provider are as follows:
 
-As Django settings :
-++++++++++++++++++++
+**As Django settings :**
 
  .. code-block:: python
 
@@ -78,8 +75,7 @@ As Django settings :
     EMAIL_PORT = 587
     DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
-As Function Arguments:
-++++++++++++++++++++++
+**As Function Arguments:**
 
 - `EMAIL_HOST_USER` as `username`.
 - `EMAIL_HOST_PASSWORD` as `password`.
@@ -132,8 +128,8 @@ SENDGRID_API_KEY :
 
 - Sample settings for SendGrid Provider are as follows:
 
-As Django settings :
-++++++++++++++++++++
+**As Django settings :**
+
 
  .. code-block:: python
 
@@ -145,8 +141,8 @@ As Django settings :
     EMAIL_PORT = 587
     DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
-As Function Arguments:
-++++++++++++++++++++++
+**As Function Arguments:**
+
 
 - `SENDGRID_API_KEY` as `sendgrid_api_key`.
 
