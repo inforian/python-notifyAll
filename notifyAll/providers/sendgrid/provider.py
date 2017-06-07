@@ -30,15 +30,20 @@ class SendGridProvider(base.EmailProvider):
     id = 'sendgrid'
     name = 'SendGrid'
 
-    def __init__(self, source, destination, notification_type, context):
+    def __init__(self, sendgrid_api_key=None, *args, **kwargs):
         """
+        we will provide to ways to configure clients :
+         - One, you can configure plivo keys from settings if not,
+         - Then Second, you ca send keys as function arguments too,
+         - Priority wil be given to function arguments
 
-        :data: a dict contains all necessary data needed by Provider to send notification.
+        :param sendgrid_api_key: SendGrid API key
         """
-        super(SendGridProvider, self).__init__()
+        super(SendGridProvider, self).__init__( *args, **kwargs)
 
         # validate necessary settings are configured by user for SendGrid
-        sendgrid_api_key = getattr(settings, 'SENDGRID_API_KEY', None)
+        if sendgrid_api_key is None:
+            sendgrid_api_key = getattr(settings, 'SENDGRID_API_KEY', None)
 
         if sendgrid_api_key is None:
             raise ImproperlyConfigured(
@@ -46,18 +51,7 @@ class SendGridProvider(base.EmailProvider):
             )
 
         # validate notification_type w.r.t Provider notify_type
-        self._validate_notification_type_with_provider(notification_type)
-
-        self.source = source
-        self.destination = destination
-        self.notification_type = notification_type
-        self.context = context
-
-    def notify(self):
-        """notify respective recipient using gmail smtp server
-
-        """
-        self._prepare_email_message(self.source, self.destination, self.context)
-        return self.email_message.send()
+        self._validate_notification_type_with_provider(self.notification_type)
+        self.notify()
 
 RegisterProvider = SendGridProvider

@@ -14,6 +14,8 @@ from __future__ import unicode_literals
 # 3rd party
 
 # Django
+from django.conf import settings
+from django.core.mail import get_connection
 
 # local
 
@@ -24,30 +26,38 @@ from notifyAll.providers import base
 class GmailProvider(base.EmailProvider):
     """Gmail Provider Class
 
+    :param username: Email client username
+    :param password: Email client password
     """
     id = 'gmail'
     name = 'Gmail'
 
-    def __init__(self, source, destination, notification_type, context):
+    def __init__(self, username=None, password=None, *args, **kwargs):
         """
 
-        :data: a dict contains all necessary data needed by Provider to send notification.
         """
-        super(GmailProvider, self).__init__()
+        super(GmailProvider, self).__init__(*args, **kwargs)
+
+        # connection related settings
+        self.username = username
+        self.password = password
 
         # validate notification_type w.r.t Provider notify_type
-        self._validate_notification_type_with_provider(notification_type)
+        self._validate_notification_type_with_provider(self.notification_type)
+        self.notify()
 
-        self.source = source
-        self.destination = destination
-        self.notification_type = notification_type
-        self.context = context
+    def _make_connection(self):
+        """make connection with backend
 
-    def notify(self):
-        """notify respective recipient using gmail smtp server
-
+        :return: connection with email provider
         """
-        self._prepare_email_message(self.source, self.destination, self.context)
-        return self.email_message.send()
+        configuration = {
+            'username': self.username,
+            'password': self.password,
+        }
+
+        return get_connection(backend=settings.EMAIL_BACKEND,
+                              fail_silently=self.fail_silently,
+                              **configuration)
 
 RegisterProvider = GmailProvider

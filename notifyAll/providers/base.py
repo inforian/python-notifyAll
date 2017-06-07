@@ -22,13 +22,9 @@ from __future__ import unicode_literals
 # Django
 from django.conf import settings
 from django.core.mail import EmailMultiAlternatives
-from django.core.exceptions import ImproperlyConfigured
 
 # local
 from notifyAll.services import service_config
-
-# own app
-from notifyAll.providers import provider_config
 
 
 class EmailProvider(object):
@@ -39,16 +35,33 @@ class EmailProvider(object):
     name = None
     notify_type = service_config.EMAIL
 
-    def __init__(self):
+    def __init__(self, source, destination, notification_type, context,
+                fail_silently=False):
+        """
+       we will provide to ways to configure clients :
+         - One, you can configure email settings from Django-settings file if not,
+         - Then Second, you can send settings as function arguments too,
+         - Priority wil be given to function arguments
+
+        :param source: who wants to send SMS
+        :param destination: to whom SMS will be sent.
+        :param notification_type: notification type
+        :param context: data you want to send in SMS
+        :param fail_silently: catch exception
         """
 
-        """
-        # validate necessary settings are configured by user for Email Notifications
-        email_backend = getattr(settings, 'EMAIL_BACKEND', None)
-        email_host = getattr(settings, 'EMAIL_HOST', None)
+        # email related stuff
+        self.source = settings.DEFAULT_FROM_EMAIL if source is None else source
+        self.destination = destination
+        self.notification_type = notification_type
+        self.subject = context.get('subject', '')
+        self.body = context.get('body', '')
+        self.cc = context.get('cc')
+        self.bcc = context.get('bcc')
+        self.attachment = context.get('attachment')
+        self.html_message = context.get('html_message')
 
-        if email_backend is None or email_host is None:
-            raise ImproperlyConfigured('to send emails you need to configure email Backend and Host.')
+        self.fail_silently = fail_silently
 
     def _validate_notification_type_with_provider(self, notification_type):
         """validate notification_type w.r.t notify_type of Provider, means for which you have called this provider
@@ -63,31 +76,41 @@ class EmailProvider(object):
         """
         return value if type(value) is list else [value]
 
-    def _prepare_email_message(self, from_, to, context):
+    def _make_connection(self):
+        """make connection with backend
+
+        :return: connection with email provider
+        """
+        return None
+
+    def _prepare_email_message(self):
         """Prepare email message with necessary information.
         """
+
         message = {
-            'subject': context.get('subject', ''),
-            'body': context.get('body', ''),
-            'from_email': from_ if from_ else provider_config.DEFAULT_FROM_EMAIL,
-            'to': self._convert_var_type_to_list(to),
-            'cc': self._convert_var_type_to_list(context.get('cc')),
-            'bcc': self._convert_var_type_to_list(context.get('bcc')),
+            'subject': self.subject,
+            'body': self.body,
+            'from_email': self.source,
+            'to': self._convert_var_type_to_list(self.destination),
+            'cc': self._convert_var_type_to_list(self.cc),
+            'bcc': self._convert_var_type_to_list(self.bcc),
+            'connection': self._make_connection()
         }
 
         self.email_message = EmailMultiAlternatives(**message)
 
-        if context.get('attachment'):
-            self.email_message.attach_file(context.get('attachment'))
+        if self.attachment:
+            self.email_message.attach_file(self.attachment)
 
-        if context.get('html_message'):
+        if self.html_message:
             self.email_message.attach_alternative(
-                context.get('html_message'), 'text/html')
+                self.html_message, 'text/html')
 
     def notify(self):
         """
         """
-        pass
+        self._prepare_email_message()
+        return self.email_message.send()
 
 
 class SMSProvider(object):
@@ -98,10 +121,21 @@ class SMSProvider(object):
     name = None
     notify_type = service_config.SMS
 
-    def __init__(self):
+    def __init__(self, source, destination, notification_type, context):
         """
 
+        :param source: who wants to send SMS
+        :param destination: to whom SMS will be sent.
+        :param notification_type: notification type
+        :param context: data you want to send in SMS
         """
+        # validate notification_type w.r.t Provider notify_type
+        self._validate_notification_type_with_provider(notification_type)
+
+        self.source = source
+        self.destination = destination
+        self.notification_type = notification_type
+        self.context = context
 
     def _validate_notification_type_with_provider(self, notification_type):
         """validate notification_type w.r.t notify_type of Provider, means for which you have called this provider

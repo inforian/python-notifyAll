@@ -75,9 +75,12 @@ class Notifier(object):
         except ImportError:
             raise ValueError('Invalid provider {0} selected'.format(provider))
 
-    def notify(self):
+    def notify(self, *args, **kwargs):
         """route notification to its respective Provider
 
+        :param args: extra arguments.
+        :param kwargs: extra keyword-arguments.
         """
-        provider_instance = self.provider(**self.data)
+        self.data.update(**kwargs)
+        provider_instance = self.provider(*args, **self.data)
         provider_instance.notify()

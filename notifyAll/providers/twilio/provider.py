@@ -15,12 +15,13 @@ from __future__ import unicode_literals
 from twilio.rest import TwilioRestClient
 
 # Django
+from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured
 
 # local
 
 # own app
-from notifyAll.providers import base, provider_config
+from notifyAll.providers import base
 
 
 class TwilioProvider(base.SMSProvider):
@@ -30,39 +31,45 @@ class TwilioProvider(base.SMSProvider):
     id = 'twilio'
     name = 'Twilio'
 
-    def __init__(self, source, destination, notification_type, context):
+    def __init__(self, account_sid=None, auth_token=None, *args, **kwargs):
         """
 
-        :data: a dict contains all necessary data needed by Provider to send notification.
+        :param account_sid: twilio auth id
+        :param auth_token: twilio auth token
         """
-        super(TwilioProvider, self).__init__()
+        super(TwilioProvider, self).__init__(*args, **kwargs)
+
+        self.account_sid = account_sid
+        self.auth_token = auth_token
 
         # validate necessary settings and configure Twilio
         self._validate_configure_twilio()
 
         # validate notification_type w.r.t Provider notify_type
-        self._validate_notification_type_with_provider(notification_type)
-
-        self.source = source
-        self.destination = destination
-        self.notification_type = notification_type
-        self.context = context
+        self._validate_notification_type_with_provider(self.notification_type)
 
     def _validate_configure_twilio(self):
         """configure twilio client
 
+        we will provide to ways to configure clients :
+         - One, you can configure twilio keys from settings if not,
+         - Then Second, you ca send keys as function arguments too,
+         - Priority wil be given to function arguments
+
         :return: twilio client instance
         """
 
-        account_sid = getattr(provider_config, 'TWILIO_ACCOUNT_SID', None)
-        auth_token = getattr(provider_config, 'TWILIO_AUTH_TOKEN', None)
+        if self.account_sid is None:
+            self.account_sid = getattr(settings, 'TWILIO_ACCOUNT_SID', None)
+        if self.auth_token is None:
+            self.auth_token = getattr(settings, 'TWILIO_AUTH_TOKEN', None)
 
-        if account_sid is None or auth_token is None:
+        if self.account_sid is None or self.auth_token is None:
             raise ImproperlyConfigured(
                 'to send sms via {0} you need to configure TWILIO_ACCOUNT_SID & TWILIO_AUTH_TOKEN in settings.'.format(self.name)
             )
 
-        self.twilio_clinet = TwilioRestClient(account_sid, auth_token)
+        self.twilio_clinet = TwilioRestClient(self.account_sid, self.auth_token)
 
     def notify(self):
         """notify respective recipient using twilio client
