@@ -92,3 +92,6 @@ ENV/
 # example project
 example/db.sqlite3
 example/local_settings.py
+
+# local dev env settings
+local.py
