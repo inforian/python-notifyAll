@@ -8,10 +8,13 @@ SMS Providers
     notification_type = 'sms'
 
 - General Settings you need to configure in Django Project when using any email providers are mentioned below :
+
 - Some settings can be passed as function arguments as well as in `Django settings`. The main AIM is to provide all
-possible flexibility to user to use Any `Provider` with any configuration.
+	possible flexibility to user to use Any `Provider` with any configuration.
+
 - If we Add settings in `Django settings` then in entire project those settings will be used But if you want every
-notification use different provider configuration then that is also possible here.
+	notification use different provider configuration then that is also possible here.
+
 
 > Plivo
 -------

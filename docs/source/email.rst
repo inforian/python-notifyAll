@@ -8,10 +8,13 @@ Email Providers
     notification_type = 'email'
 
 - General Settings you need to configure in Django Project when using any email providers are mentioned below :
+
 - Some settings can be passed as function arguments as well as in `Django settings`. The main AIM is to provide all
-possible flexibility to user to use Any `Provider` with any configuration.
+    possible flexibility to user to use Any `Provider` with any configuration.
+
 - If we Add settings in `Django settings` then in entire project those settings will be used But if you want every
-notification use different provider configuration then that is also possible here.
+    notification use different provider configuration then that is also possible here.
+
 
 > General Settings
 ------------------
@@ -56,12 +59,14 @@ Default email address to use for various outgoing emails.
 
     provider = 'gmail'
 
-- You can use Gmail as your **SMTP** provider an send Emails from Your own Gmail account.
+- You can use Gmail as your **SMTP** provider an send Emails from Your own `Gmail` account.
+
 - For this you need below settings to configure in your Django Project.
+
 - Sample settings for Gmail Provider are as follows:
 
 As Django settings :
-~~~~~~~~~~~~~~~~~~~~
+++++++++++++++++++++
 
  .. code-block:: python
 
@@ -74,7 +79,7 @@ As Django settings :
     DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 As Function Arguments:
-~~~~~~~~~~~~~~~~~~~~~~
+++++++++++++++++++++++
 
 - `EMAIL_HOST_USER` as `username`.
 - `EMAIL_HOST_PASSWORD` as `password`.
@@ -128,7 +133,7 @@ SENDGRID_API_KEY :
 - Sample settings for SendGrid Provider are as follows:
 
 As Django settings :
-~~~~~~~~~~~~~~~~~~~~
+++++++++++++++++++++
 
  .. code-block:: python
 
@@ -141,7 +146,7 @@ As Django settings :
     DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 As Function Arguments:
-~~~~~~~~~~~~~~~~~~~~~~
+++++++++++++++++++++++
 
 - `SENDGRID_API_KEY` as `sendgrid_api_key`.
 
