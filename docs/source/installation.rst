@@ -104,5 +104,5 @@ context
 
 For more information about usage visit our `Example`_ project.
 
-.. _Provider: https://django-allauth.readthedocs.io/en/latest/providers.html
-.. _Example: https://django-allauth.readthedocs.io/en/latest/example.html
+.. _Provider: https://django-notifyAll.readthedocs.io/en/latest/providers.html
+.. _Example: https://django-notifyAll.readthedocs.io/en/latest/example.html

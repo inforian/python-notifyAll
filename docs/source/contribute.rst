@@ -11,4 +11,4 @@ How you can Contribute ?
 - Improve/Add Functionality to existing Providers.
 - Any Suggestion to improve performance of this library.
 
-.. _these: https://django-allauth.readthedocs.io/en/latest/Providers.html
+.. _these: https://django-notifyAll.readthedocs.io/en/latest/Providers.html

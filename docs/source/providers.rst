@@ -11,8 +11,8 @@ I'll try to explain what settings you need in order to user Any below providers.
    email
    sms
 
-**Note :** Providers can be managed in two ways using `django settings` or as `function arguments`.
-See respective Providers docs for more info
+**Note :**
+ Providers can be managed in two ways using `django settings` or as `function arguments`. See respective Providers docs for more info
 
 Add providers
 =============
@@ -34,4 +34,4 @@ If you want to contribute to this repo and wish to add more providers just follo
   so that your provider can be enabled for outer world.
 
 
-.. _Provider: https://django-allauth.readthedocs.io/en/latest/providers.html
+.. _Provider: https://django-notifyAll.readthedocs.io/en/latest/providers.html
