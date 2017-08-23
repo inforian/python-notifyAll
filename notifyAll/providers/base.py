@@ -17,14 +17,8 @@ General Instructions for creating providers :
 # future
 from __future__ import unicode_literals
 
-# 3rd party
-
-# Django
-from django.conf import settings
-from django.core.mail import EmailMultiAlternatives
-
 # local
-from notifyAll.services import service_config
+from notifyAll import settings
 
 
 class EmailProvider(object):
@@ -33,7 +27,7 @@ class EmailProvider(object):
     """
     id = None
     name = None
-    notify_type = service_config.EMAIL
+    notify_type = settings.EMAIL
 
     def __init__(self, source, destination, notification_type, context,
                 fail_silently=False):
@@ -51,7 +45,7 @@ class EmailProvider(object):
         """
 
         # email related stuff
-        self.source = settings.DEFAULT_FROM_EMAIL if source is None else source
+        self.source = source
         self.destination = destination
         self.notification_type = notification_type
         self.subject = context.get('subject', '')
@@ -86,31 +80,32 @@ class EmailProvider(object):
     def _prepare_email_message(self):
         """Prepare email message with necessary information.
         """
-
-        message = {
-            'subject': self.subject,
-            'body': self.body,
-            'from_email': self.source,
-            'to': self._convert_var_type_to_list(self.destination),
-            'cc': self._convert_var_type_to_list(self.cc),
-            'bcc': self._convert_var_type_to_list(self.bcc),
-            'connection': self._make_connection()
-        }
-
-        self.email_message = EmailMultiAlternatives(**message)
-
-        if self.attachment:
-            self.email_message.attach_file(self.attachment)
-
-        if self.html_message:
-            self.email_message.attach_alternative(
-                self.html_message, 'text/html')
+        pass
+        # message = {
+        #     'subject': self.subject,
+        #     'body': self.body,
+        #     'from_email': self.source,
+        #     'to': self._convert_var_type_to_list(self.destination),
+        #     'cc': self._convert_var_type_to_list(self.cc),
+        #     'bcc': self._convert_var_type_to_list(self.bcc),
+        #     # 'connection': self._make_connection()
+        # }
+        #
+        # # self.email_message = EmailMultiAlternatives(**message)
+        #
+        # if self.attachment:
+        #     self.email_message.attach_file(self.attachment)
+        #
+        # if self.html_message:
+        #     self.email_message.attach_alternative(
+        #         self.html_message, 'text/html')
 
     def notify(self):
         """
         """
-        self._prepare_email_message()
-        return self.email_message.send()
+        pass
+        # self._prepare_email_message()
+        # return self.email_message.send()
 
 
 class SMSProvider(object):
@@ -119,7 +114,7 @@ class SMSProvider(object):
     """
     id = None
     name = None
-    notify_type = service_config.SMS
+    notify_type = settings.SMS
 
     def __init__(self, source, destination, notification_type, context):
         """
