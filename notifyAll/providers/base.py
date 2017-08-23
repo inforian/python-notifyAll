@@ -29,8 +29,7 @@ class EmailProvider(object):
     name = None
     notify_type = settings.EMAIL
 
-    def __init__(self, source, destination, notification_type, context,
-                fail_silently=False):
+    def __init__(self, source, destination, notification_type, context):
         """
        we will provide to ways to configure clients :
          - One, you can configure email settings from Django-settings file if not,
@@ -41,7 +40,6 @@ class EmailProvider(object):
         :param destination: to whom SMS will be sent.
         :param notification_type: notification type
         :param context: data you want to send in SMS
-        :param fail_silently: catch exception
         """
 
         # email related stuff
@@ -55,11 +53,9 @@ class EmailProvider(object):
         self.attachment = context.get('attachment')
         self.html_message = context.get('html_message')
 
-        self.fail_silently = fail_silently
-
     def _validate_notification_type_with_provider(self, notification_type):
         """validate notification_type w.r.t notify_type of Provider, means for which you have called this provider
-        wether this provider allows that functionality ?
+        whether this provider allows that functionality ?
         """
         if not notification_type == self.notify_type:
             raise ValueError('Invalid notification type for {0} Provider.'.format(self.name))
@@ -81,31 +77,11 @@ class EmailProvider(object):
         """Prepare email message with necessary information.
         """
         pass
-        # message = {
-        #     'subject': self.subject,
-        #     'body': self.body,
-        #     'from_email': self.source,
-        #     'to': self._convert_var_type_to_list(self.destination),
-        #     'cc': self._convert_var_type_to_list(self.cc),
-        #     'bcc': self._convert_var_type_to_list(self.bcc),
-        #     # 'connection': self._make_connection()
-        # }
-        #
-        # # self.email_message = EmailMultiAlternatives(**message)
-        #
-        # if self.attachment:
-        #     self.email_message.attach_file(self.attachment)
-        #
-        # if self.html_message:
-        #     self.email_message.attach_alternative(
-        #         self.html_message, 'text/html')
 
     def notify(self):
         """
         """
         pass
-        # self._prepare_email_message()
-        # return self.email_message.send()
 
 
 class SMSProvider(object):
