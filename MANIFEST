@@ -3,5 +3,4 @@ README
 setup.cfg
 setup.py
 notifyAll/__init__.py
-notifyAll/models.py
-notifyAll/tests.py
+
