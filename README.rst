@@ -5,8 +5,8 @@ Welcome to django-notifyAll's documentation !
     :target: http://django-notifyall.readthedocs.io/en/latest/?badge=latest
     :alt: Documentation Status
 
-.. image:: https://badge.fury.io/py/django-notifyAll.svg
-   :target: http://badge.fury.io/py/django-notifyAll
+.. image:: https://badge.fury.io/py/python-notifyAll.svg
+    :target: https://badge.fury.io/py/python-notifyAll
 
 .. image:: https://travis-ci.org/inforian/django-notifyAll.svg?branch=master
    :target: http://travis-ci.org/inforian/django-notifyAll
