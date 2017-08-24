@@ -3,8 +3,9 @@ Welcome to django-notifyAll's documentation !
 
 A library which can be used for all types of notifications like SMS, Mail, Push.
 
-- Supports Python2.7+, Django 1.8+
+- Supports Python2.7+
 
+**Documentation :** https://django-notifyall.readthedocs.io/en/latest/index.html
 
 Why?
 ====
@@ -65,5 +66,4 @@ Indices and tables
 * :ref:`modindex`
 * :ref:`search`
 
-.. _Read the Docs: https://django-allauth.readthedocs.io/en/latest/index.html
 .. _django-allauth: https://django-allauth.readthedocs.io/en/latest/index.html

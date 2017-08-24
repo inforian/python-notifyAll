@@ -3,7 +3,7 @@
 
 """
 - notifyAll.providers.twilio.provider
-~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 - This file contains the functionality of Twilio Provider
 """
@@ -14,13 +14,8 @@ from __future__ import unicode_literals
 # 3rd party
 from twilio.rest import TwilioRestClient
 
-# Django
-from django.conf import settings
-from django.core.exceptions import ImproperlyConfigured
-
-# local
-
 # own app
+from notifyAll import settings
 from notifyAll.providers import base
 
 
@@ -52,7 +47,7 @@ class TwilioProvider(base.SMSProvider):
         """configure twilio client
 
         we will provide to ways to configure clients :
-         - One, you can configure twilio keys from settings if not,
+         - One, you can configure twilio keys from environment variables if not,
          - Then Second, you ca send keys as function arguments too,
          - Priority wil be given to function arguments
 
@@ -65,17 +60,18 @@ class TwilioProvider(base.SMSProvider):
             self.auth_token = getattr(settings, 'TWILIO_AUTH_TOKEN', None)
 
         if self.account_sid is None or self.auth_token is None:
-            raise ImproperlyConfigured(
-                'to send sms via {0} you need to configure TWILIO_ACCOUNT_SID & TWILIO_AUTH_TOKEN in settings.'.format(self.name)
+            raise RuntimeWarning(
+                'to send sms via {0} you need to configure TWILIO_ACCOUNT_SID & TWILIO_AUTH_TOKEN in \n'
+                'environment variables or send account_sid & auth_token as function arguments.'.format(self.name)
             )
 
-        self.twilio_clinet = TwilioRestClient(self.account_sid, self.auth_token)
+        self.twilio_client = TwilioRestClient(self.account_sid, self.auth_token)
 
     def notify(self):
         """notify respective recipient using twilio client
 
         """
-        return self.twilio_clinet.messages.create(
+        return self.twilio_client.messages.create(
             to=self.destination,
             from_=self.source,
             body=self.context.get('body', ''),

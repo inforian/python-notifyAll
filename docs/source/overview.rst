@@ -5,7 +5,6 @@ Requirements
 ------------
 
 - Python2.7,3.*
-- Django (1.8+)
 - Other requirements are based on the Provider you choose.
 
 Supported Providers

@@ -3,24 +3,20 @@
 
 """
 - notifyAll.services.notifier
-~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
--  This file contains the library common file, every request for sending notifications will come here,
+-  This file contains the library common file, every request
+   for sending notifications will come here,
    Here we will route notification to its respective Provider
 """
 
 # future
 from __future__ import unicode_literals
 
-# 3rd party
-
-# Django
-from django.utils.module_loading import import_string
-
-# local
+from pydoc import locate
 
 # own app
-from notifyAll.services import service_config
+from notifyAll import settings
 
 
 class Notifier(object):
@@ -55,23 +51,22 @@ class Notifier(object):
         }
 
     def _validate_notification_type(self, notification_type):
-        """validate notification_type, wether we have service of requested notification_type or not.
+        """validate notification_type, whether we have service of requested notification_type or not.
 
         :param notification_type: notification type (email, sms, push).
         """
-        if notification_type not in service_config.ALLOWED_SERVICES:
-            raise ValueError('Invalid notification type. Valid values are {0}.'.format(service_config.ALLOWED_SERVICES))
+        if notification_type not in settings.ALLOWED_SERVICES:
+            raise ValueError('Invalid notification type. Valid values are {0}.'.format(settings.ALLOWED_SERVICES))
 
     def _validate_provider(self, provider):
-        """validate provider, wether we have integrated requested provider or not.
+        """validate provider, whether we have integrated requested provider or not.
 
         :param provider: notification Provider.
         :return: provider class Instance (if provider is valid)
         """
-        provider_app_path = service_config.PROVIDER_APP_CLASS_PATH.format(provider)
-
+        provider_app_path = settings.PROVIDER_APP_CLASS_PATH.format(provider)
         try:
-            return import_string(provider_app_path)  # import provider app dynamically
+            return locate(provider_app_path)  # import provider app dynamically
         except ImportError:
             raise ValueError('Invalid provider {0} selected'.format(provider))
 
