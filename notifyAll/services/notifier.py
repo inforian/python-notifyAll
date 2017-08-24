@@ -3,7 +3,7 @@
 
 """
 - notifyAll.services.notifier
-~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 -  This file contains the library common file, every request
    for sending notifications will come here,
@@ -14,7 +14,6 @@
 from __future__ import unicode_literals
 
 from pydoc import locate
-
 
 # own app
 from notifyAll import settings
@@ -52,7 +51,7 @@ class Notifier(object):
         }
 
     def _validate_notification_type(self, notification_type):
-        """validate notification_type, wether we have service of requested notification_type or not.
+        """validate notification_type, whether we have service of requested notification_type or not.
 
         :param notification_type: notification type (email, sms, push).
         """
@@ -60,7 +59,7 @@ class Notifier(object):
             raise ValueError('Invalid notification type. Valid values are {0}.'.format(settings.ALLOWED_SERVICES))
 
     def _validate_provider(self, provider):
-        """validate provider, wether we have integrated requested provider or not.
+        """validate provider, whether we have integrated requested provider or not.
 
         :param provider: notification Provider.
         :return: provider class Instance (if provider is valid)

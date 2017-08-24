@@ -38,8 +38,8 @@ class GmailProvider(base.EmailProvider):
         self.username = username
         self.password = password
 
-        # validate necessary settings are configured by user for SendGrid
-        # first we will check have user sent sendgrid api key via function
+        # validate necessary settings are configured by user for Gmail
+        # first we will check have user sent Gmail username / password via function
         # argument if not then we will check
         # env variable if both of them are not present then raise error.
         if self.username is None :
@@ -68,7 +68,7 @@ class GmailProvider(base.EmailProvider):
         return GMail(self.username, self.password)
 
     def _prepare_email_message(self):
-        """Prepare email message for Sendgrid
+        """Prepare email message for Gmail
 
         :return: Gmail Email message
         """

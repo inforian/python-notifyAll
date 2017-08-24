@@ -3,7 +3,7 @@
 
 """
 - notifyAll.providers.plivo.provider
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 - This file contains the functionality of Plivo Provider
 """
