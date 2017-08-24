@@ -11,13 +11,8 @@ I'll try to explain what settings you need in order to user Any below providers.
    email
    sms
 
-<<<<<<< HEAD
-**Note :**
- Providers can be managed in two ways using `django settings` or as `function arguments`. See respective Providers docs for more info
-=======
 **Note :** Poviders Settings can be managed in two ways using `environment variables` or as `function arguments`.
 See respective Providers docs for more info
->>>>>>> develop
 
 Add providers
 =============

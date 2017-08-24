@@ -11,14 +11,10 @@ Python package:
 
  .. code-block:: python
 
-    pip install django-notifyAll
-
-settings.py
-
-- Add ``notifyAll`` in your ``INSTALLED_APPS``
+    pip install python-notifyAll
 
 
-Further settings depends on the Provider you Choose. Visit `Provider`_ page for that.
+Package settings depends on the Provider you Choose. Visit `Provider`_ page for that.
 
 
 Usage
