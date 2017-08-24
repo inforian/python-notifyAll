@@ -11,7 +11,7 @@ I'll try to explain what settings you need in order to user Any below providers.
    email
    sms
 
-**Note :** Providers can be managed in two ways using `django settings` or as `function arguments`.
+**Note :** Providers Settings can be managed in two ways using `environment variables` or as `function arguments`.
 See respective Providers docs for more info
 
 Add providers
@@ -26,12 +26,12 @@ If you want to contribute to this repo and wish to add more providers just follo
 
    e.g., For `Gmail` provider , `id` & `app_name` both are same i.e., `gmail`
 
-- If your provider require some settings from user then add them here too ``notifyAll/providers/provider_config.py``
+- If your provider require some settings from user then add them to ``notifyAll/settings.py``
 - Also update `Provider`_ documentation for your provider (Update respective doc only means email,sms have their own documentation).
 
 
-- Update service configuration file to add your provider in ``ALLOWED_SERVICES`` at ``notifyAll/services/service_config.py``
+- Update service configuration file to add your provider in ``ALLOWED_SERVICES`` at ``notifyAll/settings.py``
   so that your provider can be enabled for outer world.
 
 
-.. _Provider: https://django-allauth.readthedocs.io/en/latest/providers.html
+.. _Provider: https://django-notifyall.readthedocs.io/en/latest/providers.html
