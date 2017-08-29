@@ -56,9 +56,4 @@ How?
 
 Work in progress, the basic idea is to follow the lead of `django-allauth`_.
 
-.. image:: https://app.codesponsor.io/embed/NJ36ZJN5UcFRWGekS9Mu6fcD/inforian/django-notifyAll.svg
-    :target: https://app.codesponsor.io/link/NJ36ZJN5UcFRWGekS9Mu6fcD/inforian/django-notifyAll
-    :alt: Code Sponser link
-
-
 .. _django-allauth: https://django-allauth.readthedocs.io/en/latest/index.html
