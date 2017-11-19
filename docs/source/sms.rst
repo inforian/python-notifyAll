@@ -109,5 +109,51 @@ TWILIO_AUTH_TOKEN
 
 - Usage is same as shown in `Plivo` provider example
 
+> Msg91
+-------
+
+
+**Requirement**
+    - you need to install python `requests`_ package to use this provider.
+
+    .. code-block:: python
+
+        pip install requests
+
+- Provider Type for all Twilio Provider is ``msg91``
+
+ .. code-block:: python
+
+    provider = 'msg91'
+
+- When you register at `Msg91` it will give you one key which you need to configure in your Project.
+
+**As Django settings :**
+
+MSG91_AUTHKEY
++++++++++++++
+
+**Optional Settings**
+
+MSG91_PROMOTIONAL_ROUTE
++++++++++++++++++++++++
+
+- Default value is `1`
+
+MSG91_TRANSACTIONAL_ROUTE
++++++++++++++++++++++++++
+
+- Default value is `4`
+
+
+**As Function Arguments:**
+
+- `MSG91_AUTHKEY` as `auth_key`
+
+
+- Usage is same as shown in `Plivo` provider example
+
+
 .. _plivo: https://github.com/plivo/plivo-python
 .. _twilio:  https://github.com/twilio/twilio-python
+.. _requests: http://docs.python-requests.org/en/master/

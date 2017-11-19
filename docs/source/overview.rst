@@ -14,6 +14,7 @@ Supported Providers
 - SendGrid
 - Plivo
 - Twilio
+- Msg91
 
 
 Done (Suggestion/Feedback most welcome)
@@ -23,7 +24,8 @@ Done (Suggestion/Feedback most welcome)
 - Notification Email Provider Base Class
 - Notification Push Provider Base Class
 - Notification SMS Service Provider - Plivo
-- Notification Email Service Provider - Twilio
+- Notification SMS Service Provider - Twilio
+- Notification SMS Service Provider - Msg91
 - Notification Email Service Provider - Gmail
 - Notification Email Service Provider - SebdGrid
 
