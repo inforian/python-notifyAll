@@ -28,7 +28,7 @@ pyparsing==2.2.0
 PySocks==1.6.6
 python-http-client==3.0.0
 pytz==2016.10
-requests==2.13.0
+requests==2.20.0
 sendgrid==5.0.0
 simplegeneric==0.8.1
 six==1.10.0
