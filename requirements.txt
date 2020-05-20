@@ -5,7 +5,7 @@ decorator==4.0.11
 docutils==0.13.1
 flake8==3.4.1
 gmail==0.6.3
-httplib2==0.10.3
+httplib2==0.18.0
 imagesize==0.7.1
 ipdb==0.10.2
 ipython==5.3.0
